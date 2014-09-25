@@ -1,0 +1,130 @@
+//===============================================================================
+// File: Base.cpp
+//===============================================================================
+//	Name		Hayley Ferr
+//	Course		CPSC-131, Section 02
+//  Time		TUTH 5:30PM
+//	Project		Project No.4 Part 2
+//	Due Date	Sept. 25, 2014
+//	Instructor	Prof. Ray Ahmadnia
+//
+//	purpose: convert numbers to a new base
+//
+//===============================================================================
+
+#include <iostream>
+#include <string>
+#include "STACKPAC.h"
+#include <ctime>
+
+using namespace std;
+
+//====changeOfBase===============================================================
+//
+//	Changes base from decimal to either binary, base 8 or base 16
+//
+//===============================================================================
+
+
+void changeOfBase()
+{
+	char hexdigits[] = "0123456789ABCDEF";
+	Stack<int, 10> remainderstack;
+	remainderstack.ClearStack();
+	int n;
+	int choose;
+	cout << "Enter an integer number : ";
+	cin >> n;
+	cout << "Enter the new base(2,8,16): ";
+	cin >> choose;
+	int remainder;
+	if (choose == 2)
+	{
+		while (n > 0)
+		{
+			remainderstack.PushStack(n % 2);
+			n /= 2;
+		}
+
+		while (!remainderstack.EmptyStack())
+		{
+			cout << remainderstack.PopStack();
+		}
+		cout << endl;
+	}
+
+
+	else if (choose == 8)
+	{
+		while (n > 0)
+		{
+			remainder = n % 8;
+			remainderstack.PushStack(remainder);
+			n /= 8;
+		}
+		while (!remainderstack.EmptyStack())
+		{
+			cout << remainderstack.PopStack();
+		}
+		cout << endl;
+
+	}
+	else if (choose == 16)
+	{
+		while (n > 0)
+		{
+			remainder = n % 16;
+			remainderstack.PushStack(remainder);
+			n /= 16;
+		}
+		while (!remainderstack.EmptyStack())
+		{
+			cout << hexdigits[remainderstack.PopStack()];
+		}
+		cout << endl;
+
+	}
+	char x;
+	cout << "CONTINUE(y/n)?";
+	cin >> x;
+	if (x == 'y')
+	{
+		cin.ignore();
+		cin.clear();
+		changeOfBase();
+	}
+
+}
+
+//====main========================================================================
+//
+//================================================================================
+
+int main()
+{
+	time_t temp;
+	time(&temp);
+	cout << "Today's date and time is " << ctime(&temp) << endl;
+	changeOfBase();
+	return 0;
+};
+
+/*--------------------------------------------------------------------------------
+
+Today's date and time is Thu Sep 25 08:40:45 2014
+
+Enter an integer number : 126
+Enter the new base(2,8,16): 16
+7E
+CONTINUE(y/n)?y
+Enter an integer number : 119
+Enter the new base(2,8,16): 8
+167
+CONTINUE(y/n)?y
+Enter an integer number : 67
+Enter the new base(2,8,16): 2
+1000011
+CONTINUE(y/n)?n
+Press any key to continue . . .
+
+--------------------------------------------------------------------------------*/
