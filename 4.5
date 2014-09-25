@@ -1,0 +1,45 @@
+//===============================================================================
+// File: PROJECT4.5.cpp
+//===============================================================================
+//	Name		Hayley Ferr
+//	Course		CPSC-131, Section 02
+//  Time		TUTH 5:30PM
+//	Project		Project No.4 Part 4
+//	Due Date	Sept. 25, 2014
+//	Instructor	Prof. Ray Ahmadnia
+//
+//	purpose: create a recursive function
+//
+//===============================================================================
+
+#include <iostream>
+
+using namespace std;
+
+//====Recursive==================================================================
+//
+//	input: int n: Number input for recursive function
+//
+//	sum the powers of two from n to 2
+//
+//===============================================================================
+
+int Recursive(int n)
+{
+	if (n == 2)
+		return 4;
+	else return (2 ^ n) + Recursive(n-1);
+}
+
+//===main=========================================================================
+//
+//================================================================================
+
+int main()
+{
+	int input;
+	cin >> input;
+	int total = Recursive(input);
+	cout << total;
+};
+ 
